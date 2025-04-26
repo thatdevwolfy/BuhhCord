@@ -1,10 +1,10 @@
 /*
  * Vesktop, a desktop app aiming to give you a snappier Discord Experience
- * Copyright (c) 2023 Vendicated and Vencord contributors
+ * Copyright (c) 2023 Vendicated and Buhhcord contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { Logger } from "@vencord/types/utils";
+import { Logger } from "@buhhcord/types/utils";
 import { currentSettings } from "renderer/components/ScreenSharePicker";
 import { State } from "renderer/settings";
 import { isLinux } from "renderer/utils";
@@ -17,7 +17,7 @@ if (isLinux) {
     async function getVirtmic() {
         try {
             const devices = await navigator.mediaDevices.enumerateDevices();
-            const audioDevice = devices.find(({ label }) => label === "vencord-screen-share");
+            const audioDevice = devices.find(({ label }) => label === "buhhcord-screen-share");
             return audioDevice?.deviceId;
         } catch (error) {
             return null;

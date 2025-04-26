@@ -1,23 +1,23 @@
 /*
  * Vesktop, a desktop app aiming to give you a snappier Discord Experience
- * Copyright (c) 2023 Vendicated and Vencord contributors
+ * Copyright (c) 2023 Vendicated and Buhhcord contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { globalExternalsWithRegExp } from "@fal-works/esbuild-plugin-global-externals";
 
 const names = {
-    webpack: "Vencord.Webpack",
-    "webpack/common": "Vencord.Webpack.Common",
-    utils: "Vencord.Util",
-    api: "Vencord.Api",
-    "api/settings": "Vencord",
-    components: "Vencord.Components"
+    webpack: "Buhhcord.Webpack",
+    "webpack/common": "Buhhcord.Webpack.Common",
+    utils: "Buhhcord.Util",
+    api: "Buhhcord.Api",
+    "api/settings": "Buhhcord",
+    components: "Buhhcord.Components"
 };
 
 export default globalExternalsWithRegExp({
     getModuleInfo(modulePath) {
-        const path = modulePath.replace("@vencord/types/", "");
+        const path = modulePath.replace("@buhhcord/types/", "");
         let varName = names[path];
         if (!varName) {
             const altMapping = names[path.split("/")[0]];
@@ -34,5 +34,5 @@ export default globalExternalsWithRegExp({
             type: "cjs"
         };
     },
-    modulePathFilter: /^@vencord\/types.+$/
+    modulePathFilter: /^@buhhcord\/types.+$/
 });

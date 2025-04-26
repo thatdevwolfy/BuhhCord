@@ -1,6 +1,6 @@
 /*
  * Vesktop, a desktop app aiming to give you a snappier Discord Experience
- * Copyright (c) 2023 Vendicated and Vencord contributors
+ * Copyright (c) 2023 Vendicated and Buhhcord contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -12,9 +12,9 @@ import { VesktopNative } from "./VesktopNative";
 
 contextBridge.exposeInMainWorld("VesktopNative", VesktopNative);
 
-require(ipcRenderer.sendSync(IpcEvents.GET_VENCORD_PRELOAD_FILE));
+require(ipcRenderer.sendSync(IpcEvents.GET_BUHHCORD_PRELOAD_FILE));
 
-webFrame.executeJavaScript(ipcRenderer.sendSync(IpcEvents.GET_VENCORD_RENDERER_SCRIPT));
+webFrame.executeJavaScript(ipcRenderer.sendSync(IpcEvents.GET_BUHHCORD_RENDERER_SCRIPT));
 webFrame.executeJavaScript(ipcRenderer.sendSync(IpcEvents.GET_RENDERER_SCRIPT));
 
 // #region css

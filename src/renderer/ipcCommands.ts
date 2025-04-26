@@ -1,10 +1,10 @@
 /*
  * Vesktop, a desktop app aiming to give you a snappier Discord Experience
- * Copyright (c) 2025 Vendicated and Vencord contributors
+ * Copyright (c) 2025 Vendicated and Buhhcord contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { SettingsRouter } from "@vencord/types/webpack/common";
+import { SettingsRouter } from "@buhhcord/types/webpack/common";
 import { IpcCommands } from "shared/IpcEvents";
 
 type IpcCommandHandler = (data: any) => any;

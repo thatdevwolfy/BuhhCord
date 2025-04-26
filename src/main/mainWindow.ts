@@ -1,6 +1,6 @@
 /*
  * Vesktop, a desktop app aiming to give you a snappier Discord Experience
- * Copyright (c) 2023 Vendicated and Vencord contributors
+ * Copyright (c) 2023 Vendicated and Buhhcord contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -35,15 +35,15 @@ import {
     MessageBoxChoice,
     MIN_HEIGHT,
     MIN_WIDTH,
-    VENCORD_FILES_DIR
+    BUHHCORD_FILES_DIR
 } from "./constants";
 import { darwinURL } from "./index";
 import { sendRendererCommand } from "./ipcCommands";
-import { Settings, State, VencordSettings } from "./settings";
+import { Settings, State, BuhhcordSettings } from "./settings";
 import { createSplashWindow, updateSplashMessage } from "./splash";
 import { makeLinksOpenExternally } from "./utils/makeLinksOpenExternally";
 import { applyDeckKeyboardFix, askToApplySteamLayout, isDeckGameMode } from "./utils/steamOS";
-import { downloadVencordFiles, ensureVencordFiles } from "./utils/vencordLoader";
+import { downloadBuhhcordFiles, ensureBuhhcordFiles } from "./utils/buhhcordLoader";
 
 let isQuitting = false;
 let tray: Tray;
@@ -75,7 +75,7 @@ function makeSettingsListenerHelpers<O extends object>(o: SettingsStore<O>) {
 }
 
 const [addSettingsListener, removeSettingsListeners] = makeSettingsListenerHelpers(Settings);
-const [addVencordSettingsListener, removeVencordSettingsListeners] = makeSettingsListenerHelpers(VencordSettings);
+const [addBuhhcordSettingsListener, removeBuhhcordSettingsListeners] = makeSettingsListenerHelpers(BuhhcordSettings);
 
 function initTray(win: BrowserWindow) {
     const onTrayClick = () => {
@@ -94,9 +94,9 @@ function initTray(win: BrowserWindow) {
             click: createAboutWindow
         },
         {
-            label: "Repair Vencord",
+            label: "Repair Buhhcord",
             async click() {
-                await downloadVencordFiles();
+                await downloadBuhhcordFiles();
                 app.relaunch();
                 app.quit();
             }
@@ -160,7 +160,7 @@ type MenuItemList = Array<MenuItemConstructorOptions | false>;
 function initMenuBar(win: BrowserWindow) {
     const isWindows = process.platform === "win32";
     const isDarwin = process.platform === "darwin";
-    const wantCtrlQ = !isWindows || VencordSettings.store.winCtrlQ;
+    const wantCtrlQ = !isWindows || BuhhcordSettings.store.winCtrlQ;
 
     const subMenu = [
         {
@@ -168,9 +168,9 @@ function initMenuBar(win: BrowserWindow) {
             click: createAboutWindow
         },
         {
-            label: "Force Update Vencord",
+            label: "Force Update Buhhcord",
             async click() {
-                await downloadVencordFiles();
+                await downloadBuhhcordFiles();
                 app.relaunch();
                 app.quit();
             },
@@ -296,7 +296,7 @@ function getDarwinOptions(): BrowserWindowConstructorOptions {
     } as BrowserWindowConstructorOptions;
 
     const { splashTheming, splashBackground } = Settings.store;
-    const { macosTranslucency } = VencordSettings.store;
+    const { macosTranslucency } = BuhhcordSettings.store;
 
     if (macosTranslucency) {
         options.vibrancy = "sidebar";
@@ -352,7 +352,7 @@ function initSettingsListeners(win: BrowserWindow) {
         }
     });
 
-    addVencordSettingsListener("macosTranslucency", enabled => {
+    addBuhhcordSettingsListener("macosTranslucency", enabled => {
         if (enabled) {
             win.setVibrancy("sidebar");
             win.setBackgroundColor("#ffffff00");
@@ -406,12 +406,12 @@ function initStaticTitle(win: BrowserWindow) {
 function createMainWindow() {
     // Clear up previous settings listeners
     removeSettingsListeners();
-    removeVencordSettingsListeners();
+    removeBuhhcordSettingsListeners();
 
     const { staticTitle, transparencyOption, enableMenu, customTitleBar, splashTheming, splashBackground } =
         Settings.store;
 
-    const { frameless, transparent } = VencordSettings.store;
+    const { frameless, transparent } = BuhhcordSettings.store;
 
     const noFrame = frameless === true || customTitleBar === true;
     const backgroundColor =
@@ -485,7 +485,7 @@ function createMainWindow() {
     return win;
 }
 
-const runVencordMain = once(() => require(join(VENCORD_FILES_DIR, "vencordDesktopMain.js")));
+const runBuhhcordMain = once(() => require(join(BUHHCORD_FILES_DIR, "buhhcordDesktopMain.js")));
 
 const loadEvents = new EventEmitter();
 
@@ -518,8 +518,8 @@ export async function createWindows() {
         if (isDeckGameMode) splash.setFullScreen(true);
     }
 
-    await ensureVencordFiles();
-    runVencordMain();
+    await ensureBuhhcordFiles();
+    runBuhhcordMain();
 
     mainWin = createMainWindow();
 

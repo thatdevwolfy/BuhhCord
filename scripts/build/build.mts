@@ -1,13 +1,13 @@
 /*
  * Vesktop, a desktop app aiming to give you a snappier Discord Experience
- * Copyright (c) 2023 Vendicated and Vencord contributors
+ * Copyright (c) 2023 Vendicated and Buhhcord contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import { BuildContext, BuildOptions, context } from "esbuild";
 import { copyFile } from "fs/promises";
 
-import vencordDep from "./vencordDep.mjs";
+import buhhcordDep from "./buhhcordDep.mjs";
 
 const isDev = process.argv.includes("--dev");
 
@@ -39,11 +39,11 @@ async function copyVenmic() {
 
     return Promise.all([
         copyFile(
-            "./node_modules/@vencord/venmic/prebuilds/venmic-addon-linux-x64/node-napi-v7.node",
+            "./node_modules/@buhhcord/venmic/prebuilds/venmic-addon-linux-x64/node-napi-v7.node",
             "./static/dist/venmic-x64.node"
         ),
         copyFile(
-            "./node_modules/@vencord/venmic/prebuilds/venmic-addon-linux-arm64/node-napi-v7.node",
+            "./node_modules/@buhhcord/venmic/prebuilds/venmic-addon-linux-arm64/node-napi-v7.node",
             "./static/dist/venmic-arm64.node"
         )
     ]).catch(() => console.warn("Failed to copy venmic. Building without venmic support"));
@@ -75,10 +75,10 @@ await Promise.all([
         outfile: "dist/js/renderer.js",
         format: "iife",
         inject: ["./scripts/build/injectReact.mjs"],
-        jsxFactory: "VencordCreateElement",
-        jsxFragment: "VencordFragment",
-        external: ["@vencord/types/*"],
-        plugins: [vencordDep],
+        jsxFactory: "BuhhcordCreateElement",
+        jsxFragment: "BuhhcordFragment",
+        external: ["@buhhcord/types/*"],
+        plugins: [buhhcordDep],
         footer: { js: "//# sourceURL=VCDRenderer" }
     })
 ]);

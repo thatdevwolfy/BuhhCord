@@ -1,6 +1,6 @@
 /*
  * Vesktop, a desktop app aiming to give you a snappier Discord Experience
- * Copyright (c) 2023 Vendicated and Vencord contributors
+ * Copyright (c) 2023 Vendicated and Buhhcord contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -25,8 +25,8 @@ if (IS_DEV) {
 
 console.log("Vesktop v" + app.getVersion());
 
-// Make the Vencord files use our DATA_DIR
-process.env.VENCORD_USER_DATA_DIR = DATA_DIR;
+// Make the Buhhcord files use our DATA_DIR
+process.env.BUHHCORD_USER_DATA_DIR = DATA_DIR;
 
 function init() {
     app.setAsDefaultProtocolClient("discord");
@@ -66,7 +66,7 @@ function init() {
     // WinRetrieveSuggestionsOnlyOnDemand: Work around electron 13 bug w/ async spellchecking on Windows.
     // HardwareMediaKeyHandling,MediaSessionService: Prevent Discord from registering as a media service.
     //
-    // WidgetLayering (Vencord Added): Fix DevTools context menus https://github.com/electron/electron/issues/38790
+    // WidgetLayering (Buhhcord Added): Fix DevTools context menus https://github.com/electron/electron/issues/38790
     disabledFeatures.push("WinRetrieveSuggestionsOnlyOnDemand", "HardwareMediaKeyHandling", "MediaSessionService");
 
     // Support TTS on Linux using speech-dispatcher
@@ -88,7 +88,7 @@ function init() {
     });
 
     app.whenReady().then(async () => {
-        if (process.platform === "win32") app.setAppUserModelId("dev.vencord.vesktop");
+        if (process.platform === "win32") app.setAppUserModelId("dev.buhhcord.vesktop");
 
         registerScreenShareHandler();
         registerMediaPermissionsHandler();

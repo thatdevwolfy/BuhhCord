@@ -1,6 +1,6 @@
 /*
  * Vesktop, a desktop app aiming to give you a snappier Discord Experience
- * Copyright (c) 2023 Vendicated and Vencord contributors
+ * Copyright (c) 2023 Vendicated and Buhhcord contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -20,7 +20,7 @@ function makeAutoStartLinux(): AutoStart {
     const file = join(dir, "vesktop.desktop");
 
     // IM STUPID
-    const legacyName = join(dir, "vencord.desktop");
+    const legacyName = join(dir, "buhhcord.desktop");
     if (existsSync(legacyName)) renameSync(legacyName, file);
 
     // "Quoting must be done by enclosing the argument between double quotes and escaping the double quote character,

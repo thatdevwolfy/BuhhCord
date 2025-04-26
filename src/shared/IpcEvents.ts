@@ -1,12 +1,12 @@
 /*
  * Vesktop, a desktop app aiming to give you a snappier Discord Experience
- * Copyright (c) 2023 Vendicated and Vencord contributors
+ * Copyright (c) 2023 Vendicated and Buhhcord contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 export const enum IpcEvents {
-    GET_VENCORD_PRELOAD_FILE = "VCD_GET_VC_PRELOAD_FILE",
-    GET_VENCORD_RENDERER_SCRIPT = "VCD_GET_VC_RENDERER_SCRIPT",
+    GET_BUHHCORD_PRELOAD_FILE = "VCD_GET_VC_PRELOAD_FILE",
+    GET_BUHHCORD_RENDERER_SCRIPT = "VCD_GET_VC_RENDERER_SCRIPT",
     GET_RENDERER_SCRIPT = "VCD_GET_RENDERER_SCRIPT",
     GET_RENDERER_CSS_FILE = "VCD_GET_RENDERER_CSS_FILE",
 
@@ -23,8 +23,8 @@ export const enum IpcEvents {
     GET_SETTINGS = "VCD_GET_SETTINGS",
     SET_SETTINGS = "VCD_SET_SETTINGS",
 
-    GET_VENCORD_DIR = "VCD_GET_VENCORD_DIR",
-    SELECT_VENCORD_DIR = "VCD_SELECT_VENCORD_DIR",
+    GET_BUHHCORD_DIR = "VCD_GET_BUHHCORD_DIR",
+    SELECT_BUHHCORD_DIR = "VCD_SELECT_BUHHCORD_DIR",
 
     UPDATER_GET_DATA = "VCD_UPDATER_GET_DATA",
     UPDATER_DOWNLOAD = "VCD_UPDATER_DOWNLOAD",

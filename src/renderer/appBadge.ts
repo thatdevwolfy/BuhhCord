@@ -1,11 +1,11 @@
 /*
  * Vesktop, a desktop app aiming to give you a snappier Discord Experience
- * Copyright (c) 2023 Vendicated and Vencord contributors
+ * Copyright (c) 2023 Vendicated and Buhhcord contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { filters, waitFor } from "@vencord/types/webpack";
-import { RelationshipStore } from "@vencord/types/webpack/common";
+import { filters, waitFor } from "@buhhcord/types/webpack";
+import { RelationshipStore } from "@buhhcord/types/webpack/common";
 
 import { VesktopLogger } from "./logger";
 import { Settings } from "./settings";

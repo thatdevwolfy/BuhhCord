@@ -1,6 +1,6 @@
 /*
  * Vesktop, a desktop app aiming to give you a snappier Discord Experience
- * Copyright (c) 2023 Vendicated and Vencord contributors
+ * Copyright (c) 2023 Vendicated and Buhhcord contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -15,9 +15,9 @@ export const PORTABLE =
     !process.execPath.toLowerCase().endsWith("electron.exe") &&
     !existsSync(join(vesktopDir, "Uninstall Vesktop.exe"));
 
-const LEGACY_DATA_DIR = join(app.getPath("appData"), "VencordDesktop", "VencordDesktop");
+const LEGACY_DATA_DIR = join(app.getPath("appData"), "BuhhcordDesktop", "BuhhcordDesktop");
 export const DATA_DIR =
-    process.env.VENCORD_USER_DATA_DIR || (PORTABLE ? join(vesktopDir, "Data") : join(app.getPath("userData")));
+    process.env.BUHHCORD_USER_DATA_DIR || (PORTABLE ? join(vesktopDir, "Data") : join(app.getPath("userData")));
 
 mkdirSync(DATA_DIR, { recursive: true });
 
@@ -30,7 +30,7 @@ if (existsSync(LEGACY_DATA_DIR)) {
         }
         rmdirSync(LEGACY_DATA_DIR);
         renameSync(
-            join(app.getPath("appData"), "VencordDesktop", "IndexedDB"),
+            join(app.getPath("appData"), "BuhhcordDesktop", "IndexedDB"),
             join(DATA_DIR, "sessionData", "IndexedDB")
         );
     } catch (e) {
@@ -40,18 +40,18 @@ if (existsSync(LEGACY_DATA_DIR)) {
 const SESSION_DATA_DIR = join(DATA_DIR, "sessionData");
 app.setPath("sessionData", SESSION_DATA_DIR);
 
-export const VENCORD_SETTINGS_DIR = join(DATA_DIR, "settings");
-export const VENCORD_QUICKCSS_FILE = join(VENCORD_SETTINGS_DIR, "quickCss.css");
-export const VENCORD_SETTINGS_FILE = join(VENCORD_SETTINGS_DIR, "settings.json");
-export const VENCORD_THEMES_DIR = join(DATA_DIR, "themes");
+export const BUHHCORD_SETTINGS_DIR = join(DATA_DIR, "settings");
+export const BUHHCORD_QUICKCSS_FILE = join(BUHHCORD_SETTINGS_DIR, "quickCss.css");
+export const BUHHCORD_SETTINGS_FILE = join(BUHHCORD_SETTINGS_DIR, "settings.json");
+export const BUHHCORD_THEMES_DIR = join(DATA_DIR, "themes");
 
 // needs to be inline require because of circular dependency
 // as otherwise "DATA_DIR" (which is used by ./settings) will be uninitialised
-export const VENCORD_FILES_DIR =
-    (require("./settings") as typeof import("./settings")).State.store.vencordDir ||
-    join(SESSION_DATA_DIR, "vencordFiles");
+export const BUHHCORD_FILES_DIR =
+    (require("./settings") as typeof import("./settings")).State.store.buhhcordDir ||
+    join(SESSION_DATA_DIR, "buhhcordFiles");
 
-export const USER_AGENT = `Vesktop/${app.getVersion()} (https://github.com/Vencord/Vesktop)`;
+export const USER_AGENT = `Vesktop/${app.getVersion()} (https://github.com/Buhhcord/Vesktop)`;
 
 // dimensions shamelessly stolen from Discord Desktop :3
 export const MIN_WIDTH = 940;

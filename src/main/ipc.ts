@@ -1,6 +1,6 @@
 /*
  * Vesktop, a desktop app aiming to give you a snappier Discord Experience
- * Copyright (c) 2023 Vendicated and Vencord contributors
+ * Copyright (c) 2023 Vendicated and Buhhcord contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -27,17 +27,17 @@ import { debounce } from "shared/utils/debounce";
 import { IpcEvents } from "../shared/IpcEvents";
 import { setBadgeCount } from "./appBadge";
 import { autoStart } from "./autoStart";
-import { VENCORD_FILES_DIR, VENCORD_QUICKCSS_FILE, VENCORD_THEMES_DIR } from "./constants";
+import { BUHHCORD_FILES_DIR, BUHHCORD_QUICKCSS_FILE, BUHHCORD_THEMES_DIR } from "./constants";
 import { mainWin } from "./mainWindow";
 import { Settings, State } from "./settings";
 import { handle, handleSync } from "./utils/ipcWrappers";
 import { PopoutWindows } from "./utils/popout";
 import { isDeckGameMode, showGamePage } from "./utils/steamOS";
-import { isValidVencordInstall } from "./utils/vencordLoader";
+import { isValidBuhhcordInstall } from "./utils/buhhcordLoader";
 
-handleSync(IpcEvents.GET_VENCORD_PRELOAD_FILE, () => join(VENCORD_FILES_DIR, "vencordDesktopPreload.js"));
-handleSync(IpcEvents.GET_VENCORD_RENDERER_SCRIPT, () =>
-    readFileSync(join(VENCORD_FILES_DIR, "vencordDesktopRenderer.js"), "utf-8")
+handleSync(IpcEvents.GET_BUHHCORD_PRELOAD_FILE, () => join(BUHHCORD_FILES_DIR, "buhhcordDesktopPreload.js"));
+handleSync(IpcEvents.GET_BUHHCORD_RENDERER_SCRIPT, () =>
+    readFileSync(join(BUHHCORD_FILES_DIR, "buhhcordDesktopRenderer.js"), "utf-8")
 );
 
 handleSync(IpcEvents.GET_RENDERER_SCRIPT, () => readFileSync(join(__dirname, "renderer.js"), "utf-8"));
@@ -116,11 +116,11 @@ handle(IpcEvents.SPELLCHECK_ADD_TO_DICTIONARY, (e, word: string) => {
     e.sender.session.addWordToSpellCheckerDictionary(word);
 });
 
-handleSync(IpcEvents.GET_VENCORD_DIR, e => (e.returnValue = State.store.vencordDir));
+handleSync(IpcEvents.GET_BUHHCORD_DIR, e => (e.returnValue = State.store.buhhcordDir));
 
-handle(IpcEvents.SELECT_VENCORD_DIR, async (_e, value?: null) => {
+handle(IpcEvents.SELECT_BUHHCORD_DIR, async (_e, value?: null) => {
     if (value === null) {
-        delete State.store.vencordDir;
+        delete State.store.buhhcordDir;
         return "ok";
     }
 
@@ -130,9 +130,9 @@ handle(IpcEvents.SELECT_VENCORD_DIR, async (_e, value?: null) => {
     if (!res.filePaths.length) return "cancelled";
 
     const dir = res.filePaths[0];
-    if (!isValidVencordInstall(dir)) return "invalid";
+    if (!isValidBuhhcordInstall(dir)) return "invalid";
 
-    State.store.vencordDir = dir;
+    State.store.buhhcordDir = dir;
 
     return "ok";
 });
@@ -158,25 +158,25 @@ handle(IpcEvents.DEBUG_LAUNCH_GPU, () => openDebugPage("chrome://gpu"));
 handle(IpcEvents.DEBUG_LAUNCH_WEBRTC_INTERNALS, () => openDebugPage("chrome://webrtc-internals"));
 
 function readCss() {
-    return readFile(VENCORD_QUICKCSS_FILE, "utf-8").catch(() => "");
+    return readFile(BUHHCORD_QUICKCSS_FILE, "utf-8").catch(() => "");
 }
 
-open(VENCORD_QUICKCSS_FILE, "a+").then(fd => {
+open(BUHHCORD_QUICKCSS_FILE, "a+").then(fd => {
     fd.close();
     watch(
-        VENCORD_QUICKCSS_FILE,
+        BUHHCORD_QUICKCSS_FILE,
         { persistent: false },
         debounce(async () => {
-            mainWin?.webContents.postMessage("VencordQuickCssUpdate", await readCss());
+            mainWin?.webContents.postMessage("BuhhcordQuickCssUpdate", await readCss());
         }, 50)
     );
 });
 
-mkdirSync(VENCORD_THEMES_DIR, { recursive: true });
+mkdirSync(BUHHCORD_THEMES_DIR, { recursive: true });
 watch(
-    VENCORD_THEMES_DIR,
+    BUHHCORD_THEMES_DIR,
     { persistent: false },
     debounce(() => {
-        mainWin?.webContents.postMessage("VencordThemeUpdate", void 0);
+        mainWin?.webContents.postMessage("BuhhcordThemeUpdate", void 0);
     })
 );

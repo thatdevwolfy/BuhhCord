@@ -1,3 +1,3 @@
-export const VencordFragment = /* #__PURE__*/ Symbol.for("react.fragment");
-export let VencordCreateElement = (...args) =>
-    (VencordCreateElement = Vencord.Webpack.Common.React.createElement)(...args);
+export const BuhhcordFragment = /* #__PURE__*/ Symbol.for("react.fragment");
+export let BuhhcordCreateElement = (...args) =>
+    (BuhhcordCreateElement = Buhhcord.Webpack.Common.React.createElement)(...args);

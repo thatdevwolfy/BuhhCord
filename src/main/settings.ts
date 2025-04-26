@@ -1,6 +1,6 @@
 /*
  * Vesktop, a desktop app aiming to give you a snappier Discord Experience
- * Copyright (c) 2023 Vendicated and Vencord contributors
+ * Copyright (c) 2023 Vendicated and Buhhcord contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -9,7 +9,7 @@ import { dirname, join } from "path";
 import type { Settings as TSettings, State as TState } from "shared/settings";
 import { SettingsStore } from "shared/utils/SettingsStore";
 
-import { DATA_DIR, VENCORD_SETTINGS_FILE } from "./constants";
+import { DATA_DIR, BUHHCORD_SETTINGS_FILE } from "./constants";
 
 const SETTINGS_FILE = join(DATA_DIR, "settings.json");
 const STATE_FILE = join(DATA_DIR, "state.json");
@@ -36,7 +36,7 @@ function loadSettings<T extends object = any>(file: string, name: string) {
 
 export const Settings = loadSettings<TSettings>(SETTINGS_FILE, "Vesktop settings");
 
-export const VencordSettings = loadSettings<any>(VENCORD_SETTINGS_FILE, "Vencord settings");
+export const BuhhcordSettings = loadSettings<any>(BUHHCORD_SETTINGS_FILE, "Buhhcord settings");
 
 if (Object.hasOwn(Settings.plain, "firstLaunch") && !existsSync(STATE_FILE)) {
     console.warn("legacy state in settings.json detected. migrating to state.json");

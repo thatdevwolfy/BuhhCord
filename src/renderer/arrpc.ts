@@ -1,12 +1,12 @@
 /*
  * Vesktop, a desktop app aiming to give you a snappier Discord Experience
- * Copyright (c) 2025 Vendicated and Vencord contributors
+ * Copyright (c) 2025 Vendicated and Buhhcord contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { Logger } from "@vencord/types/utils";
-import { findLazy, findStoreLazy, onceReady } from "@vencord/types/webpack";
-import { FluxDispatcher, InviteActions } from "@vencord/types/webpack/common";
+import { Logger } from "@buhhcord/types/utils";
+import { findLazy, findStoreLazy, onceReady } from "@buhhcord/types/webpack";
+import { FluxDispatcher, InviteActions } from "@buhhcord/types/webpack/common";
 import { IpcCommands } from "shared/IpcEvents";
 
 import { onIpcCommand } from "./ipcCommands";
@@ -15,7 +15,7 @@ import { Settings } from "./settings";
 const logger = new Logger("VesktopRPC", "#5865f2");
 const StreamerModeStore = findStoreLazy("StreamerModeStore");
 
-const arRPC = Vencord.Plugins.plugins["WebRichPresence (arRPC)"] as any as {
+const arRPC = Buhhcord.Plugins.plugins["WebRichPresence (arRPC)"] as any as {
     handleEvent(e: MessageEvent): void;
 };
 

@@ -1,6 +1,6 @@
 /*
  * Vesktop, a desktop app aiming to give you a snappier Discord Experience
- * Copyright (c) 2023 Vendicated and Vencord contributors
+ * Copyright (c) 2023 Vendicated and Buhhcord contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -20,6 +20,6 @@ addPatch({
 
     async filteredDevices() {
         const original = await navigator.mediaDevices.enumerateDevices();
-        return original.filter(x => x.label !== "vencord-screen-share");
+        return original.filter(x => x.label !== "buhhcord-screen-share");
     }
 });

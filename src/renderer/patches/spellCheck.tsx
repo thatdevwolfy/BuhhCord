@@ -1,12 +1,12 @@
 /*
  * Vesktop, a desktop app aiming to give you a snappier Discord Experience
- * Copyright (c) 2023 Vendicated and Vencord contributors
+ * Copyright (c) 2023 Vendicated and Buhhcord contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { addContextMenuPatch } from "@vencord/types/api/ContextMenu";
-import { findStoreLazy } from "@vencord/types/webpack";
-import { FluxDispatcher, Menu, useMemo, useStateFromStores } from "@vencord/types/webpack/common";
+import { addContextMenuPatch } from "@buhhcord/types/api/ContextMenu";
+import { findStoreLazy } from "@buhhcord/types/webpack";
+import { FluxDispatcher, Menu, useMemo, useStateFromStores } from "@buhhcord/types/webpack/common";
 import { useSettings } from "renderer/settings";
 
 import { addPatch } from "./shared";

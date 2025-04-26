@@ -1,10 +1,10 @@
 /*
  * Vesktop, a desktop app aiming to give you a snappier Discord Experience
- * Copyright (c) 2023 Vendicated and Vencord contributors
+ * Copyright (c) 2023 Vendicated and Buhhcord contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { Node } from "@vencord/venmic";
+import { Node } from "@buhhcord/venmic";
 import { ipcRenderer } from "electron";
 import { IpcMessage, IpcResponse } from "main/ipcCommands";
 import type { Settings } from "shared/settings";
@@ -34,8 +34,8 @@ export const VesktopNative = {
     },
     fileManager: {
         showItemInFolder: (path: string) => invoke<void>(IpcEvents.SHOW_ITEM_IN_FOLDER, path),
-        getVencordDir: () => sendSync<string | undefined>(IpcEvents.GET_VENCORD_DIR),
-        selectVencordDir: (value?: null) => invoke<"cancelled" | "invalid" | "ok">(IpcEvents.SELECT_VENCORD_DIR, value)
+        getBuhhcordDir: () => sendSync<string | undefined>(IpcEvents.GET_BUHHCORD_DIR),
+        selectBuhhcordDir: (value?: null) => invoke<"cancelled" | "invalid" | "ok">(IpcEvents.SELECT_BUHHCORD_DIR, value)
     },
     settings: {
         get: () => sendSync<Settings>(IpcEvents.GET_SETTINGS),

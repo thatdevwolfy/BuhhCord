@@ -1,6 +1,6 @@
 /*
  * Vesktop, a desktop app aiming to give you a snappier Discord Experience
- * Copyright (c) 2023 Vendicated and Vencord contributors
+ * Copyright (c) 2023 Vendicated and Buhhcord contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -8,16 +8,16 @@ import { mkdirSync } from "fs";
 import { access, constants as FsConstants, writeFile } from "fs/promises";
 import { join } from "path";
 
-import { USER_AGENT, VENCORD_FILES_DIR } from "../constants";
+import { USER_AGENT, BUHHCORD_FILES_DIR } from "../constants";
 import { downloadFile, fetchie } from "./http";
 
 const API_BASE = "https://api.github.com";
 
 export const FILES_TO_DOWNLOAD = [
-    "vencordDesktopMain.js",
-    "vencordDesktopPreload.js",
-    "vencordDesktopRenderer.js",
-    "vencordDesktopRenderer.css"
+    "buhhcordDesktopMain.js",
+    "buhhcordDesktopPreload.js",
+    "buhhcordDesktopRenderer.js",
+    "buhhcordDesktopRenderer.css"
 ];
 
 export interface ReleaseData {
@@ -43,8 +43,8 @@ export async function githubGet(endpoint: string) {
     return fetchie(API_BASE + endpoint, opts, { retryOnNetworkError: true });
 }
 
-export async function downloadVencordFiles() {
-    const release = await githubGet("/repos/Vendicated/Vencord/releases/latest");
+export async function downloadBuhhcordFiles() {
+    const release = await githubGet("/repos/Vendicated/Buhhcord/releases/latest");
 
     const { assets }: ReleaseData = await release.json();
 
@@ -52,7 +52,7 @@ export async function downloadVencordFiles() {
         assets
             .filter(({ name }) => FILES_TO_DOWNLOAD.some(f => name.startsWith(f)))
             .map(({ name, browser_download_url }) =>
-                downloadFile(browser_download_url, join(VENCORD_FILES_DIR, name), {}, { retryOnNetworkError: true })
+                downloadFile(browser_download_url, join(BUHHCORD_FILES_DIR, name), {}, { retryOnNetworkError: true })
             )
     );
 }
@@ -62,15 +62,15 @@ const existsAsync = (path: string) =>
         .then(() => true)
         .catch(() => false);
 
-export async function isValidVencordInstall(dir: string) {
+export async function isValidBuhhcordInstall(dir: string) {
     const results = await Promise.all(["package.json", ...FILES_TO_DOWNLOAD].map(f => existsAsync(join(dir, f))));
     return !results.includes(false);
 }
 
-export async function ensureVencordFiles() {
-    if (await isValidVencordInstall(VENCORD_FILES_DIR)) return;
+export async function ensureBuhhcordFiles() {
+    if (await isValidBuhhcordInstall(BUHHCORD_FILES_DIR)) return;
 
-    mkdirSync(VENCORD_FILES_DIR, { recursive: true });
+    mkdirSync(BUHHCORD_FILES_DIR, { recursive: true });
 
-    await Promise.all([downloadVencordFiles(), writeFile(join(VENCORD_FILES_DIR, "package.json"), "{}")]);
+    await Promise.all([downloadBuhhcordFiles(), writeFile(join(BUHHCORD_FILES_DIR, "package.json"), "{}")]);
 }

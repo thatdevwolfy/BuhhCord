@@ -1,13 +1,13 @@
 /*
  * Vesktop, a desktop app aiming to give you a snappier Discord Experience
- * Copyright (c) 2023 Vendicated and Vencord contributors
+ * Copyright (c) 2023 Vendicated and Buhhcord contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 import "./screenSharePicker.css";
 
-import { closeModal, Logger, Modals, ModalSize, openModal, useAwaiter } from "@vencord/types/utils";
-import { findStoreLazy, onceReady } from "@vencord/types/webpack";
+import { closeModal, Logger, Modals, ModalSize, openModal, useAwaiter } from "@buhhcord/types/utils";
+import { findStoreLazy, onceReady } from "@buhhcord/types/webpack";
 import {
     Button,
     Card,
@@ -18,8 +18,8 @@ import {
     Text,
     UserStore,
     useState
-} from "@vencord/types/webpack/common";
-import { Node } from "@vencord/venmic";
+} from "@buhhcord/types/webpack/common";
+import { Node } from "@buhhcord/venmic";
 import type { Dispatch, SetStateAction } from "react";
 import { addPatch } from "renderer/patches/shared";
 import { State, useSettings, useVesktopState } from "renderer/settings";
@@ -597,7 +597,7 @@ function AudioSourcePickerLinux({
         return (
             <Forms.FormText>
                 Failed to retrieve Audio Sources because your C++ library is too old to run
-                <a href="https://github.com/Vencord/venmic" target="_blank">
+                <a href="https://github.com/Buhhcord/venmic" target="_blank">
                     venmic
                 </a>
                 . See{" "}
