@@ -8,7 +8,7 @@
 
 import { readFileSync, writeFileSync, readdirSync, statSync } from 'fs';
 import path from 'path';
-
+ // BUHH
 // Function to recursively get all files
 function getAllFiles(dir, ignoreDirs = []) {
   const files = [];
